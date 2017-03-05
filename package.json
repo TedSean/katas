@@ -1,0 +1,29 @@
+{
+  "name": "katas",
+  "version": "1.0.0",
+  "description": "Katas solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/aarnoldaas/katas.git"
+  },
+  "keywords": [
+    "kata"
+  ],
+  "author": "Arnoldas Sescila",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aarnoldaas/katas/issues"
+  },
+  "homepage": "https://github.com/aarnoldaas/katas#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.3"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
