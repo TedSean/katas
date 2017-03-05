@@ -1,14 +1,12 @@
 let expect = require("chai").expect;
 
 function validSolution(board) {
-  let all = getColumns(board).concat(getRows(board), getBlocks(board));
+  let all = board.concat(getColumns(board), getBlocks(board))
   return all.filter(line => isLineValid(line)).length === 27;
 }
 
 function isLineSumValid(line) {
-  let sum = 0;
-  line.forEach(num => sum += num);
-  return sum === 45;
+  return line.reduce((a, b) => a + b) === 45;
 }
 
 function isLineValid(line) {
@@ -16,17 +14,8 @@ function isLineValid(line) {
   return line.length === 9 ? isLineSumValid(line) : false;
 }
 
-function getRows(board) {
-  let rows = [];
-  for (let i = 0; i < board.length; i++) {
-    rows.push(board[i]);
-  }
-  return rows;
-}
-
 function getColumns(board) {
   let columns = [];
-
   for (let i = 0; i < board.length; i++) {
     let column = [];
     for (let j = 0; j < board.length; j++) {
@@ -117,23 +106,6 @@ describe('Sudoku', () => {
     expect(validSolution(invalidBoard1)).to.equal(false);
     expect(validSolution(invalidBoard2)).to.equal(false);
     expect(validSolution(invalidBoard3)).to.equal(false);
-  });
-});
-
-describe('rows', () => {
-  it('should return rows', () => {
-    expect(getRows(validBoard1)).to.deep.equal(
-      [
-        [5, 3, 4, 6, 7, 8, 9, 1, 2],
-        [6, 7, 2, 1, 9, 5, 3, 4, 8],
-        [1, 9, 8, 3, 4, 2, 5, 6, 7],
-        [8, 5, 9, 7, 6, 1, 4, 2, 3],
-        [4, 2, 6, 8, 5, 3, 7, 9, 1],
-        [7, 1, 3, 9, 2, 4, 8, 5, 6],
-        [9, 6, 1, 5, 3, 7, 2, 8, 4],
-        [2, 8, 7, 4, 1, 9, 6, 3, 5],
-        [3, 4, 5, 2, 8, 6, 1, 7, 9]
-      ]);
   });
 });
 
