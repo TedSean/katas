@@ -10,7 +10,7 @@ function isLineSumValid(line) {
 }
 
 function isLineValid(line) {
-  line = line.filter(num => line.indexOf(num) !== -1 && num >= 1 && num <= 9);
+  line = line.filter(num => num >= 1 && num <= 9);
   return line.length === 9 ? isLineSumValid(line) : false;
 }
 
@@ -149,4 +149,14 @@ describe('Sudoku', () => {
       );
     });
   });
+
+  describe('line', () => {
+    it('should be valid', () => {
+      expect(isLineValid([5, 3, 4, 6, 7, 2, 1, 9, 8])).to.equal(true);
+    });
+
+    it('should be invalid', () => {
+      expect(isLineValid([5, 3, 4, 6, 7, 2, 2, 8, 8])).to.equal(false);
+    });
+  })
 });
