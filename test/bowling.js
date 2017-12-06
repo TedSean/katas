@@ -33,7 +33,7 @@ function getTurnScore(turn, strike, spare) {
   }, 0);
 }
 
-describe('Single turn score', () => {
+xdescribe('Single turn score', () => {
   it('should count turn score', () => {
     expect(getTurnScore('81', false, false)).to.equal(9);
   });
@@ -79,7 +79,7 @@ describe('Single turn score', () => {
   });
 });
 
-describe('bowling score', () => {
+xdescribe('bowling score', () => {
   it('should count sum good', () => {
     expect(countScore('90 90 13 05 31 08 13 71 41 12')).to.equal(59);
     expect(countScore('01 81 31 90 45 23 X 03 36 12')).to.equal(65);
