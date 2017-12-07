@@ -1108,33 +1108,31 @@ const input2 = "pbga (66)\n" +
   "cntj (57)"
 
 const recursiveCircus = (input) => {
-  const programs = input.split('\n');
-  const nPrograms = programs.map(program => {
-    let holds = program.split('->')[1];
-    let name = program.split(' ')[0];
-    holds = holds ? holds.trim(): holds;
+  const programs = input.split('\n').map(program => {
+    const [part1, part2] = program.split('->');
+    const [name, weight] = part1.split(' ');
     return {
-      childs: holds ? holds.split(', ') : '',
+      childs: part2 ? part2.trim().split(', ') : [],
+      weight: weight.match(/\(([0-9]+)\)/)[1],
       name
     }
   });
-  const onlyWithChilds = nPrograms.filter(({childs}) => !!childs);
-  onlyWithChilds.forEach(program => {
+  programs.forEach(program => {
     program.childs.forEach(programName => {
-      const x = onlyWithChilds.find(({name}) => name === programName);
+      const x = programs.find(({name}) => name === programName);
       if (x) {
-      x.visited = true;
+        x.visited = true;
       }
     });
   });
 
-  const notVisited = onlyWithChilds.filter(x => !x.visited);
+  const notVisited = programs.filter(x => !x.visited);
   if (notVisited.length === 1) {
     return notVisited[0].name
   }
 }
 
-describe('Recursive circus', () => {
+describe.only('Recursive circus', () => {
   it('should return tknk', () => {
     expect(recursiveCircus(input2)).to.equal('tknk');
   });
