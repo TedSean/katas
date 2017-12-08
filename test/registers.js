@@ -1066,12 +1066,12 @@ const register = (input) => {
   return max;
 }
 
-describe.only('register', () => {
+describe('register', () => {
   it('should largest value', () => {
-    expect(register(data)).to.equal(1);
+    expect(register(data)).to.equal(10);
   });
 
   it('should largest value', () => {
-    expect(register(data2)).to.equal(1);
+    expect(register(data2)).to.equal(6209);
   });
 });
