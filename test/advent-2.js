@@ -21,12 +21,15 @@ const testInput = "5 1 9 5\n" +
   "7 5 3\n" +
   "2 4 6 8"
 
-const advent2 = (input) => {
-  const rowsS = input.split('\n');
-  const rows = rowsS.map(row => row.split(' ').map(s => Number(s)));
-  const rowsCheckSums = rows.map(row => (Math.max(...row) - Math.min(...row)));
-  return rowsCheckSums.reduce((sum, val) => sum + val, 0);
-}
+const advent2 = (input) =>
+  input.split('\n')
+    .map(row => row.split(' ')
+      .map(s =>
+        Number(s)))
+    .map(row =>
+      Math.max(...row) - Math.min(...row))
+    .reduce((sum, val) =>
+      sum + val, 0);
 
 
 describe('2 Advent', () => {

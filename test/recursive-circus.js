@@ -1108,22 +1108,24 @@ const input2 = "pbga (66)\n" +
   "cntj (57)"
 
 const recursiveCircus = (input) => {
-  const programs = input.split('\n').map(program => {
-    const [part1, part2] = program.split('->');
-    const [name, tempWeight] = part1.split(' ');
-    const weight = Number(tempWeight.match(/\(([0-9]+)\)/)[1]);
-    return {
-      childs: part2 ? part2.trim().split(', ') : [],
-      weight,
-      name
-    }
-  });
-  programs.forEach(program => {
+  const programs = input.split('\n')
+    .map(program => {
+      const [part1, part2] = program.split('->');
+      const [name, tempWeight] = part1.split(' ');
+      const weight = Number(tempWeight.match(/\(([0-9]+)\)/)[1]);
+      return {
+        childs: part2 ? part2.trim().split(', ') : [],
+        weight,
+        name
+      }
+    });
+
+  programs.forEach(program =>
     program.childs.forEach(programName => {
       const x = programs.find(({name}) => name === programName);
       x.visited = true;
-    });
-  });
+    })
+  );
 
   const notVisited = programs.filter(x => !x.visited);
   if (notVisited.length === 1) {

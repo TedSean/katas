@@ -1,19 +1,12 @@
 let expect = require("chai").expect;
 
-const numbers = "";
-
-const advent1 = (input) => {
-  input = input.split('').map(numberString => Number(numberString));
-
-  return input.reduce((sum, number, currentIndex, array) => {
-    const next = currentIndex === array.length -1 ? array[0] : array[currentIndex + 1];
-    if (number === next) {
-      return sum + number;
-    } else {
-      return sum;
-    }
-  }, 0);
-}
+const advent1 = (input) =>
+  input.split('')
+    .map(numberString => Number(numberString))
+    .reduce((sum, number, currentIndex, array) => {
+      const next = currentIndex === array.length - 1 ? array[0] : array[currentIndex + 1];
+      return number === next ? sum + number : sum;
+    }, 0);
 
 
 describe('1 Advent', () => {
