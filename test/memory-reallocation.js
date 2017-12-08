@@ -1,7 +1,6 @@
 let expect = require("chai").expect;
 let _ = require("lodash");
 
-const data = [4, 10, 4, 1, 8, 4, 9, 14, 5, 1, 14, 15, 0, 15, 3, 5];
 const data2 = [0, 2, 7, 0];
 
 const redistributtion = (banks) => {
@@ -38,9 +37,5 @@ const redistributtion = (banks) => {
 describe('Memory Reallocation', () => {
   it('should return 5', () => {
     expect(redistributtion(data2)).to.equal(5);
-  });
-
-  it('should return 12841', () => {
-    expect(redistributtion(data)).to.equal(12841);
   });
 });
