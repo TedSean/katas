@@ -1067,11 +1067,11 @@ const register = (input) => {
 }
 
 describe('register', () => {
-  it('should largest value', () => {
+  it('should return largest occurred value', () => {
     expect(register(data)).to.equal(10);
   });
 
-  it('should largest value', () => {
+  it('should return largest occurred value', () => {
     expect(register(data2)).to.equal(6209);
   });
 });
