@@ -1110,34 +1110,34 @@ const input2 = "pbga (66)\n" +
 const recursiveCircus = (input) => {
   const programs = input.split('\n').map(program => {
     const [part1, part2] = program.split('->');
-    const [name, weight] = part1.split(' ');
+    const [name, tempWeight] = part1.split(' ');
+    const weight = Number(tempWeight.match(/\(([0-9]+)\)/)[1]);
     return {
       childs: part2 ? part2.trim().split(', ') : [],
-      weight: weight.match(/\(([0-9]+)\)/)[1],
+      weight,
       name
     }
   });
   programs.forEach(program => {
     program.childs.forEach(programName => {
       const x = programs.find(({name}) => name === programName);
-      if (x) {
-        x.visited = true;
-      }
+      x.visited = true;
     });
   });
 
   const notVisited = programs.filter(x => !x.visited);
   if (notVisited.length === 1) {
-    return notVisited[0].name
+    return notVisited[0]
   }
 }
 
-describe.only('Recursive circus', () => {
+describe('Recursive circus', () => {
   it('should return tknk', () => {
-    expect(recursiveCircus(input2)).to.equal('tknk');
+    expect(recursiveCircus(input2).name).to.equal('tknk');
   });
 
   it('should return hmvwl', () => {
-    expect(recursiveCircus(input)).to.equal('hmvwl');
+    expect(recursiveCircus(input).name).to.equal('hmvwl');
   });
+
 });
