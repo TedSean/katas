@@ -21,23 +21,43 @@ const testInput = "5 1 9 5\n" +
   "7 5 3\n" +
   "2 4 6 8"
 
-const advent2 = (input) =>
+const minAndMaxDiff = (row) =>
+  Math.max(...row) - Math.min(...row)
+
+const findTwoNumbersThatDivides = (row) => {
+  let x = 0;
+  row.forEach(number => {
+    row.forEach(number2 => {
+      if (number2 % number === 0 && number2 !== number) {
+        x = number2 / number;
+      }
+    })
+  })
+  return x;
+}
+
+const advent2 = (input, rowFunction) =>
   input.split('\n')
     .map(row => row.split(' ')
       .map(s =>
         Number(s)))
-    .map(row =>
-      Math.max(...row) - Math.min(...row))
+    .map(rowFunction)
     .reduce((sum, val) =>
       sum + val, 0);
 
 
+
+
 describe('2 Advent', () => {
   it('should return 18', () => {
-    expect(advent2(testInput)).to.equal(18);
+    expect(advent2(testInput, minAndMaxDiff)).to.equal(18);
   });
 
   it('should return ?', () => {
-    expect(advent2(input)).to.equal(30994);
+    expect(advent2(input, minAndMaxDiff)).to.equal(30994);
+  });
+
+  it('should return 233', () => {
+    expect(advent2(input, findTwoNumbersThatDivides)).to.equal(233);
   });
 });

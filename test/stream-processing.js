@@ -37,7 +37,7 @@ const streamProcessing = (input) => {
   return stats;
 }
 
-describe.only('Stream Processing', () => {
+describe('Stream Processing', () => {
   it('should return 1', () => {
     const input = `{}`;
     expect(streamProcessing(input).score).to.equal(1);
