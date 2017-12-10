@@ -38,7 +38,7 @@ const getReversedArray = (origArray, length, start) => {
   return arr.reverse();
 }
 
-describe.only('Knot Hash', () => {
+describe('Knot Hash', () => {
   it('should solve ', () => {
     expect(knotHash(demoNumbers, demoInput)).to.equal(12);
   });

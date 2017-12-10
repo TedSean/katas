@@ -18,7 +18,7 @@ const trampoline = (input) => {
   return steps;
 }
 
-describe.only('trampoline', () => {
+describe('trampoline', () => {
   it('should return which step run out of trampoline', () => {
     expect(trampoline(input)).to.equal(25558839);
   });
