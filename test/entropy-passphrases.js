@@ -21,8 +21,8 @@ const isHaveAngrams = (passPhrase) =>
 
 describe.only('entropy passPhrases', () => {
   it('should return', () => {
-    // expect(findCorrectPassPhrases(input, isHaveDuplicates)).to.equal(451);
-    expect(findCorrectPassPhrases(input, isHaveAngrams)).to.equal(450);
+    expect(findCorrectPassPhrases(input, isHaveDuplicates)).to.equal(451);
+    expect(findCorrectPassPhrases(input, isHaveAngrams)).to.equal(223);
   });
 });
 
