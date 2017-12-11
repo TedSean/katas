@@ -16,7 +16,7 @@ const travel = (input) =>
       case 's':
         return {x, y: y - 1, z: z + 1}
       case 'sw':
-        return {x: x-1, y, z: z + 1}
+        return {x: x - 1, y, z: z + 1}
       case 'nw':
         return {x: x - 1, y: y + 1, z}
     }
