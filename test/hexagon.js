@@ -27,7 +27,7 @@ const travel = (input) =>
 const calculateDistance = a =>
   (Math.abs(a.x) + Math.abs(a.y) + Math.abs(a.z)) / 2
 
-describe.only('traveling hexagon', () => {
+describe('traveling hexagon', () => {
   it('should return distance from starting point', () => {
     const input = `ne,ne,ne`;
     expect(calculateDistance(travel(parse(input)))).to.equal(3);
