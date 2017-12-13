@@ -1,28 +1,20 @@
 let expect = require("chai").expect;
 
-const parse = (input) => {
-  let maxIndex = 0;
-  return {
-    firewall: input.split('\n').map(layer => {
+const parse = (input) =>
+  input.split('\n')
+    .map(layer => {
       const [index, depth] = layer.split(': ')
-      maxIndex = Math.max(index, maxIndex);
       return {
         index: Number(index),
-        depth: Number(depth),
-        position: 0,
-        reverse: false
+        depth: Number(depth)
       }
-    }),
-    maxIndex
-  }
-}
+    })
 
-const isScannerAt0 = (depth, tick) => {
-  return tick % (depth + depth - 2) === 0
-}
+const isScannerAt0 = (depth, tick) =>
+  tick % (depth + depth - 2) === 0;
 
-const hack = ({firewall, maxIndex}, delay) =>
-  firewall
+const hack = (scanners, delay) =>
+  scanners
     .reduce((goodScanners, scanner) => {
       return isScannerAt0(scanner.depth, scanner.index + delay) ? goodScanners.concat(scanner) : goodScanners;
     }, [])
@@ -43,9 +35,8 @@ const part1 = (input) =>
 describe('firewall', () => {
   it('should parse', () => {
     const parsed = parse(input);
-    expect(parsed.firewall.length).to.equal(4);
-    expect(parsed.firewall[0]).to.deep.equal({index: 0, depth: 3, position: 0, reverse: false});
-    expect(parsed.maxIndex).to.equal(6);
+    expect(parsed.length).to.equal(4);
+    expect(parsed[0]).to.deep.equal({index: 0, depth: 3});
   });
 
   it('should get caught', () => {
