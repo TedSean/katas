@@ -1,6 +1,5 @@
 let expect = require("chai").expect;
 
-
 const parse = (input) =>
   input.split(',');
 
