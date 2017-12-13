@@ -62,11 +62,10 @@ const getPart2Answer = (numbers, input) => {
 
 const encode = denseHash =>
   denseHash
-    .map(a => a.toString(16))
-    .map(x => {
-      console.log(x.length === 1 ? `0${x}` : x);
-      return x.length === 1 ? `0${x}` : x
-    })
+    .map(a =>
+      a.toString(16))
+    .map(x =>
+      x.length === 1 ? `0${x}` : x)
     .join('')
 
 describe('Knot Hash', () => {
