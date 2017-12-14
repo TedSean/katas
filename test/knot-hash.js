@@ -99,5 +99,4 @@ describe('Knot Hash', () => {
   });
 });
 
-
-
+module.exports = {getPart2Answer, parsePart2Input}
