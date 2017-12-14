@@ -2,8 +2,9 @@ let expect = require("chai").expect;
 let _ = require("lodash");
 
 const data2 = [0, 2, 7, 0];
+const data = [4,10,4,1,8,4,9,14,5,1,14,15,0,15,3,5];
 
-const redistributtion = (banks) => {
+const redistribution = (banks) => {
 
   const isHappenedBefore = occ =>
     occurencies.includes(occ);
@@ -31,11 +32,19 @@ const redistributtion = (banks) => {
     currentIteration = [...currentIteration];
     index++;
   }
-  return index;
+  return {currentIteration, index};
 }
 
 describe('Memory Reallocation', () => {
-  it('should return 5', () => {
-    expect(redistributtion(data2)).to.equal(5);
+  it('should be correct', () => {
+    const {index, currentIteration} = redistribution(data2)
+    expect(index).to.equal(5);
+    expect(redistribution(currentIteration).index).to.equal(4);
+  });
+
+  it('should solve', () => {
+    const {index, currentIteration} = redistribution(data)
+    expect(index).to.equal(12841);
+    expect(redistribution(currentIteration).index).to.equal(8038);
   });
 });
