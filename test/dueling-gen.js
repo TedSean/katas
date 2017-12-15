@@ -24,9 +24,9 @@ const getNextVal = (current, multiplier, modVal) => {
   return current;
 }
 
-describe('disk defragmentation', () => {
+xdescribe('Dueling gen', () => {
 
-  it.only('should return how many used', () => {
+  it('should be correct', () => {
     expect(solve(516, 190)).to.equal(303);
   });
 });

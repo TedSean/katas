@@ -35,7 +35,7 @@ const redistribution = (banks) => {
   return {currentIteration, index};
 }
 
-describe('Memory Reallocation', () => {
+xdescribe('Memory Reallocation', () => {
   it('should be correct', () => {
     const {index, currentIteration} = redistribution(data2)
     expect(index).to.equal(5);
