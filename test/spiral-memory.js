@@ -1,18 +1,13 @@
 let expect = require("chai").expect;
 
 const spiralMemory = input => {
-  let part1 = 0, part2 = 0;
-
+  let part2 = 0;
   const size = Math.ceil(Math.sqrt(input));
+  const arr = Array.from({length: size + 100}, () => Array.from({length: size + 100}));
+  const startPoint = Math.trunc(size / 2);
 
-  const arr = Array.from({length: size+100}, () => Array.from({length: size+100}));
-
-  const start = {x: Math.trunc(size / 2), y: Math.trunc(size / 2)}
-  let current = {x: Math.trunc(size / 2), y: Math.trunc(size / 2)};
-
-  console.log(start);
-  console.log(current);
-
+  const start = {x: startPoint, y: startPoint}
+  let current = {x: startPoint, y: startPoint};
 
   const directions = {
     down: 'down',
@@ -26,6 +21,17 @@ const spiralMemory = input => {
   }
 
   let currentDirection = directions.down;
+
+  const moves = {
+    down: {x: -1, y: 0},
+    right: {x: 0, y: 1},
+    up: {x: 1, y: 0},
+    left: {x: 0, y: -1},
+    downRight: {x: -1, y: 1},
+    downLeft: {x: -1, y: -1},
+    upLeft: {x: 1, y: -1},
+    upRight: {x: 1, y: 1},
+  }
 
   const shouldSwitchDir = ({x, y}) => {
     return !arr[current.x + x][current.y + y];
@@ -41,40 +47,25 @@ const spiralMemory = input => {
     move(moves[currentDirection])
   }
 
-  const moves = {
-    down: {x: -1, y: 0},
-    right: {x: 0, y: 1},
-    up: {x: 1, y: 0},
-    left: {x: 0, y: -1},
-    downRight: {x: -1, y: 1},
-    downLeft: {x: -1, y: -1},
-    upLeft: {x: 1, y: -1},
-    upRight: {x: 1, y: 1},
-  }
-
   const getValue = ({x, y}) => {
     return (arr[current.x + x] && arr[current.x + x][current.y + y]) || 0;
   }
 
-  const getAllNeighboursSum = () => {
-    return Object.keys(directions).reduce((sum, dir) => {
-      return sum + getValue(moves[dir]);
-    }, 0) || 1;
-  }
+  const getAllNeighboursSum = () =>
+    Object.keys(directions)
+      .reduce((sum, dir) =>
+        sum + getValue(moves[dir]), 0);
 
   getNextValue = () => {
-    let sum = 1;
-    if (!part2) {
-      sum = getAllNeighboursSum();
-      if (sum > input) {
-        part2 = sum;
-      }
+    const sum = getAllNeighboursSum() || 1;
+    if (sum > input) {
+      part2 = getAllNeighboursSum();
     }
     return sum;
   }
 
   for (let i = 0; i < input; i++) {
-    arr[current.x][current.y] = getNextValue();
+    arr[current.x][current.y] = part2 ? 1 : getNextValue();
     switch (currentDirection) {
       case directions.down:
         shouldSwitchDir(moves.right) ? changeDir(directions.right) : move(moves.down)
@@ -91,11 +82,10 @@ const spiralMemory = input => {
     }
   }
 
-  part1 = Math.abs(current.x - start.x) + Math.abs(current.y - start.y) - 1
+  const part1 = Math.abs(current.x - start.x) + Math.abs(current.y - start.y) - 1
 
   return {part1, part2};
 }
-
 
 describe('Spiral memory', () => {
   it('should be correct with input', () => {
