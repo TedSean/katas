@@ -1,5 +1,5 @@
-##Install dependencies
+## Install dependencies
 * ```npm install```
 
-##Run tests
+## Run tests
 * ```npm test```
